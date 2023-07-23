@@ -33,7 +33,7 @@ public class ParallelTransactionsTest {
 		Account account = new AccountBuilder().withAccountNumber(ACCOUNT_NUMBER).withBalance(0d).build();
 		accountDao.save(account);
 		
-		ExecutorService executorService = Executors.newFixedThreadPool(5);
+		ExecutorService executorService = Executors.newFixedThreadPool(100);
 		for (int i = 0; i < 100; i++) {
 		    executorService.submit(new RunDepositWithParameters(ACCOUNT_NUMBER, 10d));
 		}
@@ -53,7 +53,7 @@ public class ParallelTransactionsTest {
 		Account account = new AccountBuilder().withAccountNumber(ACCOUNT_NUMBER).withBalance(1000d).build();
 		accountDao.save(account);
 		
-		ExecutorService executorService = Executors.newFixedThreadPool(5);
+		ExecutorService executorService = Executors.newFixedThreadPool(100);
 		for (int i = 0; i < 100; i++) {
 		    executorService.submit(new RunwithDrawalWithParameters(ACCOUNT_NUMBER, 10d));
 		}
